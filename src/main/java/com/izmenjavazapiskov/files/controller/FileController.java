@@ -24,14 +24,7 @@ public class FileController {
     }
 
     @PostMapping("/")
-    public File uploadFile(InputStream uploadedInputStream){
-        byte[] bytes = new byte[0];
-        try (uploadedInputStream) {
-            bytes = uploadedInputStream.readAllBytes();
-            return fileService.createFile(by);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public File uploadFile(@RequestBody File file){
+        return fileService.createFile(file);
     }
 }
