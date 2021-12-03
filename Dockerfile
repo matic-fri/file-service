@@ -1,4 +1,7 @@
 FROM adoptopenjdk/openjdk11
-EXPOSE 8080
-ADD /target/rso-file-service.jar rso-file-service.jar
-ENTRYPOINT ["java", "-jar", "rso-file-service.jar"]
+
+RUN mkdir -p /software
+
+ADD target/fileService.jar /software/fileService.jar
+
+CMD java -Dserver.port=$PORT $JAVA_OPTS -jar /software/fileService.jar
