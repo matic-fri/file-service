@@ -17,6 +17,10 @@ public class FileService {
         return fileRepository.findAll();
     }
 
+    public File getFileById(long id){
+        return fileRepository.findByFileId(id);
+    }
+
     public File createFile(File file) {
         return fileRepository.save(file);
     }

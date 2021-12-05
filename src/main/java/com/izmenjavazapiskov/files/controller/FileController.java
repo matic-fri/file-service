@@ -16,13 +16,23 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<File> getFiles(){
         return fileService.getFiles();
     }
 
-    @PostMapping("/")
+    @GetMapping("/{id}")
+    public File getOneFile(@PathVariable("id") long fileId){
+        return fileService.getFileById(fileId);
+    }
+
+    @PostMapping("/new")
     public File uploadFile(@RequestBody File file){
         return fileService.createFile(file);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteFile(@PathVariable("id") long fileId){
+        return fileService.deleteFile(fileId);
     }
 }
