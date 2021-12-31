@@ -1,1 +1,1 @@
---INSERT INTO file ( name, path, type, content) VALUES ( 'matic', 'geslo', 'Matic', 'Isovski');
+INSERT INTO file ( user_id, name, path, type) VALUES (  1, 'testni_file','server/files/', '.txt');

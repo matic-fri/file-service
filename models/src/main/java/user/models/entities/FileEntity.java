@@ -15,6 +15,14 @@ public class FileEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    @ManyToOne
+//    @JoinColumn(
+//            name = "file_user_fk",
+//            foreignKey = @ForeignKey(name = "file_user_fk", value = ConstraintMode.NO_CONSTRAINT)
+//    )
+    @Column(name = "user_id")
+    private Long userId;
+
     @Column(name = "name")
     private String name;
 
@@ -31,6 +39,7 @@ public class FileEntity {
     public Long getId() {
         return this.id;
     }
+    public Long getUserId() { return this.userId; }
     public String getName() { return this.name; }
     public String getPath() {
         return this.path;
@@ -46,6 +55,7 @@ public class FileEntity {
     public void setId(Long id) {
         this.id = id;
     }
+    public void setUserId(Long userId) { this.userId = userId; }
     public void setName(String fileName) {
         this.name = fileName;
     }

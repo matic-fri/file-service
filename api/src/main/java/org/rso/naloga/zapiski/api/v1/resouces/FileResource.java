@@ -50,7 +50,7 @@ public class FileResource {
     @POST
     public Response createFile(File file){
 
-        if (file.getName() == null || file.getPath() == null ||
+        if (file.getName() == null || file.getPath() == null || file.getOwnerId() == null ||
                 file.getType() == null || file.getContent() == null) {
 
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -64,7 +64,7 @@ public class FileResource {
     @PUT
     @Path("{fileId}")
     public Response putFile(@PathParam("fileId") int fileId, File file){
-        if (file.getName() == null || file.getPath() == null ||
+        if (file.getName() == null || file.getPath() == null || file.getOwnerId() == null ||
                 file.getType() == null || file.getContent() == null) {
 
             return Response.status(Response.Status.BAD_REQUEST).build();

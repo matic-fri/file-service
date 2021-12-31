@@ -9,6 +9,7 @@ public class FileConverter {
     public static File toDto(FileEntity entity) {
         File dto = new File();
         dto.setId(entity.getId());
+        dto.setOwnerId(entity.getUserId());
         dto.setName(entity.getName());
         dto.setPath(entity.getPath());
         dto.setType(entity.getType());
@@ -20,6 +21,7 @@ public class FileConverter {
 
     public static FileEntity toEntity(File dto){
         FileEntity entity = new FileEntity();
+        entity.setUserId(dto.getOwnerId());
         entity.setName(dto.getName());
         entity.setPath(dto.getPath());
         entity.setType(dto.getType());

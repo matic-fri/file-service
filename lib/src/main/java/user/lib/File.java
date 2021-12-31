@@ -3,6 +3,7 @@ package user.lib;
 public class File {
 
     private Long id;
+    private Long ownerId;
     private String fileName;
     private String filePath;
     private String fileType;
@@ -12,6 +13,7 @@ public class File {
     public Long getId() {
         return this.id;
     }
+    public Long getOwnerId() { return this.ownerId; }
     public String getName() { return this.fileName; }
     public String getPath() {
         return this.filePath;
@@ -27,6 +29,7 @@ public class File {
     public void setId(Long id) {
         this.id = id;
     }
+    public void setOwnerId(Long ownerId) { this.ownerId = ownerId; }
     public void setName(String fileName) {
         this.fileName = fileName;
     }
