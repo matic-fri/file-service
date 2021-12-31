@@ -1,0 +1,5 @@
+org\rso\naloga\zapiski\api\v1\FileApplication.class
+META-INF\services\javax.ws.rs.core.Application
+org\rso\naloga\zapiski\api\v1\dtos\ApiError.class
+org\rso\naloga\zapiski\api\v1\resouces\FileResource.class
+org\rso\naloga\zapiski\api\v1\resouces\InfoMetadataResource.class
