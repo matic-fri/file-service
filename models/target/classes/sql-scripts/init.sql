@@ -1,1 +1,0 @@
---INSERT INTO file ( name, path, type, content) VALUES ( 'matic', 'geslo', 'Matic', 'Isovski');
