@@ -1,5 +1,13 @@
 package org.rso.naloga.zapiski.api.v1.resouces;
 
+import com.kumuluz.ee.cors.annotations.CrossOrigin;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.headers.Header;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import user.lib.File;
 import user.services.beans.FileBean;
 
@@ -17,6 +25,7 @@ import java.util.logging.Logger;
 @Path("/files")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@CrossOrigin(supportedMethods = "GET, POST, PUT, DELETE, OPTIONS")
 public class FileResource {
 
     private Logger log = Logger.getLogger(FileResource.class.getName());
@@ -27,6 +36,14 @@ public class FileResource {
     @Context
     protected UriInfo uriInfo;
 
+
+    @Operation(description = "Get all files.", summary = "Get files.")
+    @APIResponses({
+        @APIResponse(responseCode = "200",
+                description = "All files",
+                content = @Content(schema = @Schema(implementation = File.class, type = SchemaType.ARRAY)),
+                headers = {@Header(name = "X-Total-Count", description = "Files")}
+        )})
     @GET
     public Response getFiles(){
         List<File> files = fileBean.getAllFiles();
@@ -34,6 +51,14 @@ public class FileResource {
         return Response.status(Response.Status.OK).entity(files).build();
     }
 
+
+    @Operation(description = "Get specified file.", summary = "Get file.")
+    @APIResponses({
+            @APIResponse(responseCode = "200",
+                    description = "Specified file",
+                    content = @Content(schema = @Schema(implementation = File.class, type = SchemaType.OBJECT)),
+                    headers = {@Header(name = "X-Total-Count", description = "File")}
+            )})
     @GET
     @Path("{fileId}")
     public Response getFileById(@PathParam("fileId") int fileId){
@@ -47,6 +72,14 @@ public class FileResource {
         return Response.status(Response.Status.OK).entity(file).build();
     }
 
+
+    @Operation(description = "Create new file", summary = "Create file.")
+    @APIResponses({
+            @APIResponse(responseCode = "200",
+                    description = "New file",
+                    content = @Content(schema = @Schema(implementation = File.class, type = SchemaType.OBJECT)),
+                    headers = {@Header(name = "X-Total-Count", description = "File")}
+            )})
     @POST
     public Response createFile(File file){
 
@@ -61,6 +94,14 @@ public class FileResource {
         return Response.status(Response.Status.OK).entity(file).build();
     }
 
+
+    @Operation(description = "Update specified file.", summary = "Update file.")
+    @APIResponses({
+            @APIResponse(responseCode = "200",
+                    description = "Updated file",
+                    content = @Content(schema = @Schema(implementation = File.class, type = SchemaType.OBJECT)),
+                    headers = {@Header(name = "X-Total-Count", description = "File")}
+            )})
     @PUT
     @Path("{fileId}")
     public Response putFile(@PathParam("fileId") int fileId, File file){
@@ -79,6 +120,14 @@ public class FileResource {
         return Response.status(Response.Status.OK).entity(file).build();
     }
 
+
+    @Operation(description = "Delete specified file.", summary = "Delete file.")
+    @APIResponses({
+            @APIResponse(responseCode = "200",
+                    description = "Status",
+                    content = @Content(schema = @Schema(implementation = File.class, type = SchemaType.BOOLEAN)),
+                    headers = {@Header(name = "X-Total-Count", description = "Status")}
+            )})
     @DELETE
     @Path("{fileId}")
     public Response deleteLiterature(@PathParam("fileId") int fileId) {
