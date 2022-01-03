@@ -13,37 +13,57 @@ kumuluzee:
       username: postgres@rsobaza
       password: RSOzapiski1
       max-pool-size: 20
-  health:
-    checks:
-      data-source-health-check:
-        type: liveness
-        jndi-name: jdbc/FileMetadataDS
-      http-health-check:
-        connection-url: http://localhost:8080/v1/files
-    metrics:
-      web-instrumentation:
-        - name: files-endpoint
-          url-pattern: /v1/files/*
+#  health:
+#    checks:
+#      data-source-health-check:
+#        type: liveness
+#        jndi-name: jdbc/FileMetadataDS
+#      http-health-check:
+#        connection-url: http://localhost:8080/v1/files
+#    metrics:
+#      web-instrumentation:
+#        - name: files-endpoint
+#          url-pattern: /v1/files/*
   logs:
-    config-file: '<?xml version="1.0" encoding="UTF-8"?>
-                          <Configuration name="comments">
-                              <Appenders>
-                                  <Console name="console" target="SYSTEM_OUT">
-                                      <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
-                                  </Console>
-                                  <Socket name="logstash" host="7889bb41-f39e-47e8-ba99-7544d8dfb6a5-ls.logit.io"
-                                  port="12345" protocol="udp">
-                                      <JSONLayout complete="false" compact="true" eventEol="true" charset="UTF-8" properties="true"/>
-                                  </Socket>
-                              </Appenders>
-                              <Loggers>
-                                  <!-- Default logger -->
-                                  <Root level="all">
-                                      <AppenderRef ref="console" level="info" />
-                                      <AppenderRef ref="logstash" level="trace" />
-                                  </Root>
-                              </Loggers>
-                          </Configuration>'
+    config-file: '<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+    <Appenders>
+        <RollingFile name="file" fileName="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}test.log" 
+                filePattern="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}test-%i.log">
+            <PatternLayout pattern="%d [%t] %-5p %c - %m%n" />
+            <SizeBasedTriggeringPolicy size="10 MB" />
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+        <Socket name="socket" host="2cef82f4-2216-4d86-87a7-d59617f61094-ls.logit.io" port="23728" protocol="ssl">
+        <PatternLayout pattern="{&quot;log_timestamp&quot;:&quot;%d&quot; ,&quot;log_thread&quot;:&quot;[%t]&quot; , &quot;log_level&quot;:&quot;%-5p&quot; , %m}%n" /> 
+        </Socket>
+        
+    </Appenders>
+    <Loggers>
+        <!-- CXF is used heavily by Mule for web services -->
+        <AsyncLogger name="org.apache.cxf" level="WARN"/>
+        
+        <!-- Apache Commons tend to make a lot of noise which can clutter the log-->
+        <AsyncLogger name="org.apache" level="WARN"/>
+        
+        <!-- Reduce startup noise -->
+        <AsyncLogger name="org.springframework.beans.factory" level="WARN"/>
+        
+        <!-- Mule classes -->
+        <AsyncLogger name="org.mule" level="INFO"/>
+        <AsyncLogger name="com.mulesoft" level="INFO"/>
+        
+        <!-- Reduce DM verbosity -->
+        <AsyncLogger name="org.jetel" level="WARN"/>
+        <AsyncLogger name="Tracking" level="WARN"/>
+        
+        <AsyncRoot level="INFO">
+            <AppenderRef ref="file" />
+            <AppenderRef ref="socket" />
+        </AsyncRoot>
+    </Loggers>
+</Configuration>'
   rest-client:
     registrations:
       - class: file-service
