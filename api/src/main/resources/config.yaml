@@ -20,13 +20,33 @@ kumuluzee:
         jndi-name: jdbc/FileMetadataDS
       http-health-check:
         connection-url: http://localhost:8080/v1/files
-  metrics:
-    web-instrumentation:
-      - name: files-endpoint
-        url-pattern: /v1/files/*
+    metrics:
+      web-instrumentation:
+        - name: files-endpoint
+          url-pattern: /v1/files/*
+  logs:
+    config-file: '<?xml version="1.0" encoding="UTF-8"?>
+                          <Configuration name="comments">
+                              <Appenders>
+                                  <Console name="console" target="SYSTEM_OUT">
+                                      <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
+                                  </Console>
+                                  <Socket name="logstash" host="7889bb41-f39e-47e8-ba99-7544d8dfb6a5-ls.logit.io"
+                                  port="12345" protocol="udp">
+                                      <JSONLayout complete="false" compact="true" eventEol="true" charset="UTF-8" properties="true"/>
+                                  </Socket>
+                              </Appenders>
+                              <Loggers>
+                                  <!-- Default logger -->
+                                  <Root level="all">
+                                      <AppenderRef ref="console" level="info" />
+                                      <AppenderRef ref="logstash" level="trace" />
+                                  </Root>
+                              </Loggers>
+                          </Configuration>'
   rest-client:
     registrations:
-      - class: image-processing-api
+      - class: file-service
         url: http://localhost:8082/v1
         read-timeout: 5000
 rest-properties:
