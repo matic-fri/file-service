@@ -1,0 +1,72 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: proxy-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /files(/|$)(.*)
+            pathType: Prefix
+            backend:
+#              serviceName: file
+#              servicePort: 8080
+              service:
+                name: file-deployment
+                port:
+                  number: 8080
+          - path: /users(/|$)(.*)
+            pathType: Prefix
+            backend:
+#              serviceName: user
+#              servicePort: 8080
+              service:
+                name: user-deployment
+                port:
+                  number: 8080
+          - path: /comments(/|$)(.*)
+              pathType: Prefix
+              backend:
+                #              serviceName: user
+                #              servicePort: 8080
+                service:
+                  name: comment-deployment
+                  port:
+                    number: 8080
+          - path: /(payments|accounts)(/|$)(.*)
+              pathType: Prefix
+              backend:
+                #              serviceName: user
+                #              servicePort: 8080
+                service:
+                  name: payment-deployment
+                  port:
+                    number: 8080
+
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: hello-world-ingress-static
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#    nginx.ingress.kubernetes.io/rewrite-target: /static/v1
+#spec:
+#  rules:
+#    - http:
+#        paths:
+#          - path:
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: aks-helloworld-one
+#                port:
+#                  number: 8080
+#            path: /static(/|$)(.*)
