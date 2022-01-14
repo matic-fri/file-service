@@ -29,4 +29,9 @@ public class FilesQuery {
         return GraphQLUtils.process(fileBean.getAllFiles(), pagination, sort, filter);
     }
 
+    @GraphQLQuery
+    public File getFile(@GraphQLArgument(name = "id") Integer id) {
+        return fileBean.getFile(id);
+    }
+
 }
