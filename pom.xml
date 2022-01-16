@@ -50,20 +50,53 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>com.kumuluz.ee.cors</groupId>
-                <artifactId>kumuluzee-cors</artifactId>
-                <version>${kumuluzee-cors.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>com.kumuluz.ee.rest</groupId>
                 <artifactId>kumuluzee-rest-core</artifactId>
                 <version>${kumuluzee-rest.version}</version>
             </dependency>
-            <dependency>
-                <artifactId>kumuluzee-config-etcd</artifactId>
+
+            <!--NOT YET IMPLEMENTED<dependency>
+                <artifactId>kumuluzee-config-consul</artifactId>
                 <groupId>com.kumuluz.ee.config</groupId>
                 <version>${kumuluzee-config.version}</version>
+            </dependency>-->
+
+            <dependency>
+                <groupId>com.kumuluz.ee.health</groupId>
+                <artifactId>kumuluzee-health</artifactId>
+                <version>${kumuluzee-health.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.metrics</groupId>
+                <artifactId>kumuluzee-metrics-core</artifactId>
+                <version>${kumuluzee-metrics.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.config</groupId>
+                <artifactId>kumuluzee-config-mp</artifactId>
+                <version>${kumuluzee-config-mp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.openapi</groupId>
+                <artifactId>kumuluzee-openapi-mp</artifactId>
+                <version>${kumuluzee-openapi-mp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.openapi</groupId>
+                <artifactId>kumuluzee-openapi-mp-ui</artifactId>
+                <version>${kumuluzee-openapi-mp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.cors</groupId>
+                <artifactId>kumuluzee-cors</artifactId>
+                <version>${kumuluzee-cors.version}</version>
             </dependency>
 
             <dependency>
@@ -85,27 +118,34 @@
             </dependency>
 
             <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-rekognition</artifactId>
+                <version>${aws-java-sdk.version}</version>
+            </dependency>
+
+            <dependency>
+                <artifactId>kumuluzee-logs-log4j2</artifactId>
+                <groupId>com.kumuluz.ee.logs</groupId>
+                <version>${kumuluzee-logs.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.kumuluz.ee.fault.tolerance</groupId>
                 <artifactId>kumuluzee-fault-tolerance-smallrye</artifactId>
                 <version>${kumuluzee-fault-tolerance.version}</version>
             </dependency>
 
-            <dependency>
+            <!--NOT YET IMPLEMENTED<dependency>
                 <groupId>com.kumuluz.ee.discovery</groupId>
                 <artifactId>kumuluzee-discovery-consul</artifactId>
                 <version>${kumuluzee-discovery.version}</version>
-            </dependency>
+            </dependency>-->
+
 
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.rso.naloga</groupId>
-                <artifactId>file-api</artifactId>
-                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.rso.naloga</groupId>
@@ -126,39 +166,6 @@
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
                 <version>20180130</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.kumuluz.ee.health</groupId>
-                <artifactId>kumuluzee-health</artifactId>
-                <version>${kumuluzee-health.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.kumuluz.ee.config</groupId>
-                <artifactId>kumuluzee-config-mp</artifactId>
-                <version>${kumuluzee-config-mp.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kumuluz.ee.metrics</groupId>
-                <artifactId>kumuluzee-metrics-core</artifactId>
-                <version>${kumuluzee-metrics.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kumuluz.ee.openapi</groupId>
-                <artifactId>kumuluzee-openapi-mp</artifactId>
-                <version>${kumuluzee-openapi-mp.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.kumuluz.ee.openapi</groupId>
-                <artifactId>kumuluzee-openapi-mp-ui</artifactId>
-                <version>${kumuluzee-openapi-mp.version}</version>
-            </dependency>
-            <dependency>
-                <artifactId>kumuluzee-logs-log4j2</artifactId>
-                <groupId>com.kumuluz.ee.logs</groupId>
-                <version>${kumuluzee-logs.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

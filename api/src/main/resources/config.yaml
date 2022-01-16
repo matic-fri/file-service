@@ -9,9 +9,9 @@ kumuluzee:
       port: 8080
   datasources:
     - jndi-name: jdbc/FileMetadataDS
-      connection-url: jdbc:postgresql://rso-db.postgres.database.azure.com:5432/postgres
-      username: postgres@rso-db
-      password: P0stgr3s
+      connection-url: jdbc:postgresql://abul.db.elephantsql.com/igkywmox
+      username: igkywmox
+      password: 2_pNpLTnwT-R-CVW86Zdc1CCkj5demVV
       max-pool-size: 20
   health:
     checks:
@@ -20,10 +20,14 @@ kumuluzee:
         jndi-name: jdbc/FileMetadataDS
       http-health-check:
         connection-url: http://localhost:8080/v1/files
-    metrics:
-      web-instrumentation:
-        - name: files-endpoint
-          url-pattern: /v1/files/*
+  metrics:
+    web-instrumentation:
+      - name: files-endpoint
+        url-pattern: /v1/files/*
+  graphql:
+    ui:
+      mapping: /myGraphqlFiles
+      enabled: true
   logs:
     config-file: '<?xml version="1.0" encoding="utf-8"?>
 <Configuration>

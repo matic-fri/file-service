@@ -61,7 +61,7 @@ public class FileResource {
             )})
     @GET
     @Path("{fileId}")
-    public Response getFileById(@PathParam("fileId") int fileId){
+    public Response getFileById(@PathParam("fileId") long fileId){
 
         File file = fileBean.getFile(fileId);
 
@@ -104,7 +104,7 @@ public class FileResource {
             )})
     @PUT
     @Path("{fileId}")
-    public Response putFile(@PathParam("fileId") int fileId, File file){
+    public Response putFile(@PathParam("fileId") long fileId, File file){
         if (file.getName() == null || file.getPath() == null || file.getOwnerId() == null ||
                 file.getType() == null || file.getContent() == null) {
 
@@ -130,7 +130,7 @@ public class FileResource {
             )})
     @DELETE
     @Path("{fileId}")
-    public Response deleteLiterature(@PathParam("fileId") int fileId) {
+    public Response deleteLiterature(@PathParam("fileId") long fileId) {
 
         boolean deleted = fileBean.deleteFile(fileId);
 

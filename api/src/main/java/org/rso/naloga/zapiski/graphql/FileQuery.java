@@ -1,4 +1,4 @@
-package graphql;
+package org.rso.naloga.zapiski.graphql;
 
 import com.kumuluz.ee.graphql.annotations.GraphQLClass;
 import com.kumuluz.ee.graphql.classes.Filter;
@@ -16,13 +16,13 @@ import javax.inject.Inject;
 
 @GraphQLClass
 @ApplicationScoped
-public class FilesQuery {
+public class FileQuery {
 
     @Inject
     private FileBean fileBean;
 
     @GraphQLQuery
-    public PaginationWrapper<File> allImageMetadata(@GraphQLArgument(name = "pagination") Pagination pagination,
+    public PaginationWrapper<File> allFiles(@GraphQLArgument(name = "pagination") Pagination pagination,
                                                     @GraphQLArgument(name = "sort") Sort sort,
                                                     @GraphQLArgument(name = "filter") Filter filter) {
 
@@ -30,7 +30,7 @@ public class FilesQuery {
     }
 
     @GraphQLQuery
-    public File getFile(@GraphQLArgument(name = "id") Integer id) {
+    public File getFile(@GraphQLArgument(name = "id") long id) {
         return fileBean.getFile(id);
     }
 
