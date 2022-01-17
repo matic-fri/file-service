@@ -22,7 +22,7 @@ kumuluzee:
         type: liveness
         jndi-name: jdbc/FileMetadataDS
       http-health-check:
-        connection-url: http://localhost:8080/v1/files
+        connection-url: http://104.45.79.50/files/v1/files
   metrics:
     web-instrumentation:
       - name: files-endpoint
@@ -74,7 +74,7 @@ kumuluzee:
   rest-client:
     registrations:
       - class: file-service
-        url: http://localhost:8082/v1
+        url: http://104.45.79.50:8082/users/v1
         read-timeout: 5000
 rest-properties:
   maintenance-mode: false
