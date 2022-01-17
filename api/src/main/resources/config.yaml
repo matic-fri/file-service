@@ -1,4 +1,7 @@
 kumuluzee:
+  openapi:
+    servlet:
+      mapping: openapi-specs
   name: file-service
   env:
     name: dev
@@ -39,7 +42,7 @@ kumuluzee:
             <DefaultRolloverStrategy max="10"/>
         </RollingFile>
         
-        <Socket name="socket" host="2cef82f4-2216-4d86-87a7-d59617f61094-ls.logit.io" port="23728" protocol="ssl">
+        <Socket name="socket" host="728965fa-b5f7-4528-ac11-fe50e7cb58ec-ls.logit.io" port="18649" protocol="ssl">
         <PatternLayout pattern="{&quot;log_timestamp&quot;:&quot;%d&quot; ,&quot;log_thread&quot;:&quot;[%t]&quot; , &quot;log_level&quot;:&quot;%-5p&quot; , %m}%n" /> 
         </Socket>
         

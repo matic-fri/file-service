@@ -12,8 +12,8 @@ import javax.ws.rs.core.Application;
 @OpenAPIDefinition(info = @Info(title = "File service API", version = "v1",
         contact = @Contact(email = "mi5658@student.uni-lj.si"),
         license = @License(name = "dev"), description = "API for managing files."),
-        servers = @Server(url = "localhost:8080/"))
-@ApplicationPath("/v1")
+        servers = @Server(url = "http://localhost:8080"))
+@ApplicationPath("v1")
 public class FileApplication extends Application {
 
 }
