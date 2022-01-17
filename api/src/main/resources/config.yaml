@@ -7,7 +7,7 @@ kumuluzee:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://104.45.79.50/files
+    base-url: http://104.45.79.50/file
     http:
       port: 8080
   datasources:
@@ -22,7 +22,7 @@ kumuluzee:
         type: liveness
         jndi-name: jdbc/FileMetadataDS
       http-health-check:
-        connection-url: http://104.45.79.50/files/v1/files
+        connection-url: http://104.45.79.50/file/v1/files
   metrics:
     web-instrumentation:
       - name: files-endpoint
@@ -71,11 +71,6 @@ kumuluzee:
         </AsyncRoot>
     </Loggers>
 </Configuration>'
-  rest-client:
-    registrations:
-      - class: file-service
-        url: http://104.45.79.50:8082/users/v1
-        read-timeout: 5000
 rest-properties:
   maintenance-mode: false
   broken: false
