@@ -19,7 +19,7 @@ spec:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
               value: jdbc:postgresql://rso-literatura.postgres.database.azure.com:5432/postgres
             - name: KUMULUZEE_DATASOURCES0_USERNAME
-              value: postgres@posgres
+              value: posgres
             - name: KUMULUZEE_DATASOURCES0_PASSWORD
               value: Rs0zap1ski
           ports:
