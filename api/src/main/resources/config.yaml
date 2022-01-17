@@ -7,7 +7,7 @@ kumuluzee:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://localhost:8080
+    base-url: http://104.45.79.50/files
     http:
       port: 8080
   datasources:
