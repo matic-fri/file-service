@@ -29,7 +29,6 @@ kumuluzee:
         url-pattern: /v1/files/*
   graphql:
     ui:
-      mapping: /myGraphqlFiles
       enabled: true
   logs:
     config-file: '<?xml version="1.0" encoding="utf-8"?>
