@@ -1,6 +1,7 @@
 package org.rso.naloga.zapiski.api.v1.resouces;
 
 import com.kumuluz.ee.cors.annotations.CrossOrigin;
+import com.kumuluz.ee.logs.cdi.Log;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.headers.Header;
@@ -21,6 +22,7 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Log
 @ApplicationScoped
 @Path("/files")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -47,7 +49,7 @@ public class FileResource {
     @GET
     public Response getFiles(){
         List<File> files = fileBean.getAllFiles();
-
+        log.info("Get all files used.");
         return Response.status(Response.Status.OK).entity(files).build();
     }
 
@@ -69,6 +71,11 @@ public class FileResource {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
+        if( file.getId() == -1){
+            log.severe("Could not find file");
+            return Response.status(500, "File does not exist or fallback circuit open.").build();
+        }
+
         return Response.status(Response.Status.OK).entity(file).build();
     }
 
@@ -85,7 +92,7 @@ public class FileResource {
 
         if (file.getName() == null || file.getPath() == null || file.getOwnerId() == null ||
                 file.getType() == null || file.getContent() == null) {
-
+            log.severe("Could not create new file, bad request");
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
